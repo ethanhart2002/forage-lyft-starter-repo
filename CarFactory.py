@@ -13,7 +13,7 @@ class CarFactory():
     @staticmethod
     def create_Calliope(current_date, last_service_date, current_mileage, last_service_mileage):
         Calliope = Car('1/1/2020', CapuletEngine(last_service_date, current_mileage, last_service_mileage),
-                       SpindlerBattery(last_service_date, current_date))
+                       SpindlerBattery(last_service_date, current_date), )
         return Calliope
 
     @staticmethod
