@@ -6,6 +6,32 @@ from battery.spindlerBattery import SpindlerBattery
 from engine.capulet_engine import CapuletEngine
 from engine.sternman_engine import SternmanEngine
 from engine.willoughby_engine import WilloughbyEngine
+from tires.carriganTires import CarriganTires
+from tires.octoprimeTires import OctoprimeTires
+
+
+class TestOctoprimeTires(unittest.TestCase):
+    def test_tiresShouldBeServiced(self):
+        array = [1, 1, 1, 1]
+        oldTires = OctoprimeTires(array)
+        self.assertTrue(oldTires.needs_service())
+
+    def test_tiresShouldNotBeServiced(self):
+        array = [0.5, 0.5, 0.9, 1]
+        newTires = OctoprimeTires(array)
+        self.assertFalse(newTires.needs_service())
+
+
+class TestCarriganTires(unittest.TestCase):
+    def test_tiresShouldBeServiced(self):
+        array = [0, 0, 0, 1]
+        oldTires = CarriganTires(array)
+        self.assertTrue(oldTires.needs_service())
+
+    def test_tiresShouldNotBeServiced(self):
+        array = [0, 0, 0, 0]
+        newTires = CarriganTires(array)
+        self.assertFalse(newTires.needs_service())
 
 
 class TestNubbinBattery(unittest.TestCase):
@@ -28,7 +54,7 @@ class TestSpindlerBattery(unittest.TestCase):
         self.today = datetime.today().date()
 
     def test_batteryShouldBeServiced(self):
-        last_service_date = self.today.replace(year=self.today.year - 3)
+        last_service_date = self.today.replace(year=self.today.year - 4)
         oldSpindler = SpindlerBattery(last_service_date, self.today)
         self.assertTrue(oldSpindler.needs_service())
 
